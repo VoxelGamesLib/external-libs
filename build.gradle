@@ -1,7 +1,7 @@
 group "me.minidigger.voxelgameslib"
 version "1.0-SNAPSHOT"
 
-defaultTasks "build testReport aggregateJavadocs"
+defaultTasks "build", "testReport", "aggregateJavadocs"
 
 buildscript {
     repositories {
