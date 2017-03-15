@@ -4,8 +4,8 @@ pipeline {
     stage('Build') {
       steps {
         echo 'Building..'
-        git(changelog: true, url: 'https://github.com/VoxelGamesLib/external-libs.git')
-        sh 'gradle'
+        git branch: "${BRANCH_NAME}", credentialsId: "github", url: "https://github.com/VoxelGamesLib/external-libs.git"
+        sh './gradlew'
       }
     }
     stage('Test') {
