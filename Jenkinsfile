@@ -13,6 +13,7 @@ pipeline {
       steps {
         echo 'Testing...'
         sh './gradlew testReport'
+        publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'build/reports/allTests/', reportFiles: 'index.html', reportName: 'JUnit Test Reports'])
       }
     }
     stage('Deploy') {
