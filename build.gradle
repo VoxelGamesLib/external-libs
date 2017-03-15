@@ -1,7 +1,7 @@
 group "me.minidigger.voxelgameslib"
 version "1.0-SNAPSHOT"
 
-defaultTasks "build", "testReport", "aggregateJavadocs"
+defaultTasks "build"
 
 buildscript {
     repositories {
@@ -12,12 +12,14 @@ buildscript {
     }
     dependencies {
         classpath 'com.netflix.nebula:gradle-aggregate-javadocs-plugin:2.2.+'
+        classpath 'com.github.ben-manes:gradle-versions-plugin:0.14.+'
     }
 }
 
 apply plugin: "java"
 apply plugin: "idea"
 apply plugin: "nebula-aggregate-javadocs"
+apply plugin: 'com.github.ben-manes.versions'
 
 sourceCompatibility = "1.8"
 targetCompatibility = "1.8"
