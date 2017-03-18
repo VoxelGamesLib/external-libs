@@ -1,8 +1,23 @@
 group 'me.minidigger.voxelgameslib'
 version '1.0-SNAPSHOT'
 
+buildscript {
+    repositories {
+        maven {
+            url "https://jcenter.bintray.com/"
+        }
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.github.jengelman.gradle.plugins:shadow:1.2.+'
+        classpath 'com.bmuschko:gradle-nexus-plugin:2.3.+'
+    }
+}
+
 apply plugin: "java"
 apply plugin: "idea"
+apply plugin: 'com.bmuschko.nexus'
+apply plugin: 'com.github.johnrengelman.shadow'
 
 sourceCompatibility = "1.8"
 targetCompatibility = "1.8"
@@ -11,6 +26,19 @@ compileJava.options.encoding = "UTF-8"
 
 repositories {
     mavenCentral()
+    maven {
+        url "http://atlas.minidigger.me:4444/nexus/content/groups/public"
+    }
+}
+
+shadowJar {
+    archiveName = "externaltools-${version}.jar"
+    mergeServiceFiles()
+}
+
+dependencies {
+    compile project(":jskill")
+    compile project(":bungeecord-chat")
 }
 
 subprojects {
@@ -44,3 +72,21 @@ subprojects {
         }
     }
 }
+
+extraArchive {
+    sources = true
+    tests = false
+    javadoc = true //TODO fix javadoc and sources
+}
+
+nexus {
+    sign = true
+    repositoryUrl = 'http://atlas.minidigger.me:4444/repository/maven-public/'
+    snapshotRepositoryUrl = 'http://atlas.minidigger.me:4444/repository/maven-snapshots/'
+}
+
+artifacts {
+    archives shadowJar
+}
+
+build.finalizedBy(shadowJar)
