@@ -2,5 +2,5 @@ group 'me.minidigger.voxelgameslib'
 version '1.0-SNAPSHOT'
 
 dependencies {
-    compile 'org.ejml:simple:0.28'
+    compile 'org.ejml:simple:0.30'
 }
