@@ -1,4 +1,4 @@
-package me.minidigger.voxelgameslib.libs.net.md_5.bungee.chat;
+package net.md_5.bungee.chat;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -8,12 +8,13 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 
+import net.md_5.bungee.api.chat.TranslatableComponent;
+
 import java.lang.reflect.Type;
 import java.util.HashSet;
 
-import me.minidigger.voxelgameslib.libs.net.md_5.bungee.api.chat.BaseComponent;
-import me.minidigger.voxelgameslib.libs.net.md_5.bungee.api.chat.TextComponent;
-import me.minidigger.voxelgameslib.libs.net.md_5.bungee.api.chat.TranslatableComponent;
+import net.md_5.bungee.api.chat.BaseComponent;
+import net.md_5.bungee.api.chat.TextComponent;
 
 public class ComponentSerializer implements JsonDeserializer<BaseComponent> {
 

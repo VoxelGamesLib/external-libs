@@ -13,17 +13,6 @@ buildscript {
     dependencies {
         classpath 'com.netflix.nebula:gradle-aggregate-javadocs-plugin:3.0.+'
         classpath 'com.github.ben-manes:gradle-versions-plugin:0.14.+'
-    }
-}
-
-buildscript {
-    repositories {
-        maven {
-            url "https://jcenter.bintray.com/"
-        }
-        mavenCentral()
-    }
-    dependencies {
         classpath 'com.github.jengelman.gradle.plugins:shadow:1.2.+'
         classpath 'com.bmuschko:gradle-nexus-plugin:2.3.+'
     }
@@ -51,6 +40,17 @@ repositories {
 shadowJar {
     archiveName = "externaltools-${version}.jar"
     mergeServiceFiles()
+    dependencies {
+        exclude(dependency('org.projectlombok:lombok:.*'))
+    }
+    relocate 'com', 'me.minidigger.voxelgameslib.libs.com'
+    relocate 'org', 'me.minidigger.voxelgameslib.libs.org'
+    relocate 'jskill', 'me.minidigger.voxelgameslib.libs.jskill'
+    relocate 'lombok', 'me.minidigger.voxelgameslib.libs.lombok'
+    relocate 'javax', 'me.minidigger.voxelgameslib.libs.javax'
+    relocate 'javassist', 'me.minidigger.voxelgameslib.libs.javassist'
+    relocate 'antlr', 'me.minidigger.voxelgameslib.libs.antlr'
+    relocate 'net', 'me.minidigger.voxelgameslib.libs.net'
 }
 
 dependencies {
@@ -112,8 +112,6 @@ nexus {
 artifacts {
     archives shadowJar
 }
-
-build.finalizedBy(shadowJar)
 
 task testReport(type: TestReport) {
     println "test report exported to $buildDir/reports/allTests"

@@ -1,4 +1,4 @@
-package me.minidigger.voxelgameslib.libs.net.md_5.bungee.api;
+package net.md_5.bungee.api;
 
 /**
  * Represents the position on the screen where a message will appear.

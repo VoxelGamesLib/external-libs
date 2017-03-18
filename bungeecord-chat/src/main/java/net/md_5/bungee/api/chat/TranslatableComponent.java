@@ -1,4 +1,4 @@
-package me.minidigger.voxelgameslib.libs.net.md_5.bungee.api.chat;
+package net.md_5.bungee.api.chat;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -8,7 +8,7 @@ import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import me.minidigger.voxelgameslib.libs.net.md_5.bungee.api.ChatColor;
+import net.md_5.bungee.api.ChatColor;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
