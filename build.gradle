@@ -33,7 +33,7 @@ compileJava.options.encoding = "UTF-8"
 repositories {
     mavenCentral()
     maven {
-        url "http://atlas.minidigger.me:4444/nexus/content/groups/public"
+        url "http://atlas.minidigger.me:4444/repository/maven-public/"
     }
 }
 
@@ -41,16 +41,9 @@ shadowJar {
     archiveName = "externaltools-${version}.jar"
     mergeServiceFiles()
     dependencies {
-        exclude(dependency('org.projectlombok:lombok:.*'))
+        exclude(dependency('org.projectlombok:lombok'))
+        exclude(dependency("junit:junit"))
     }
-    relocate 'com', 'me.minidigger.voxelgameslib.libs.com'
-    relocate 'org', 'me.minidigger.voxelgameslib.libs.org'
-    relocate 'jskill', 'me.minidigger.voxelgameslib.libs.jskill'
-    relocate 'lombok', 'me.minidigger.voxelgameslib.libs.lombok'
-    relocate 'javax', 'me.minidigger.voxelgameslib.libs.javax'
-    relocate 'javassist', 'me.minidigger.voxelgameslib.libs.javassist'
-    relocate 'antlr', 'me.minidigger.voxelgameslib.libs.antlr'
-    relocate 'net', 'me.minidigger.voxelgameslib.libs.net'
 }
 
 dependencies {
@@ -111,6 +104,14 @@ nexus {
 
 artifacts {
     archives shadowJar
+}
+
+modifyPom {
+    project {
+        dependencies {
+            // keep this empty since we shade everything into one artifact, no dependencies
+        }
+    }
 }
 
 task testReport(type: TestReport) {
