@@ -35,6 +35,12 @@ repositories {
     maven {
         url "http://atlas.minidigger.me:4444/repository/maven-public/"
     }
+    maven {
+        url "https://jcenter.bintray.com/"
+    }
+    maven {
+        url "http://ci.emc.gs/nexus/content/repositories/aikar/"
+    }
 }
 
 shadowJar {
